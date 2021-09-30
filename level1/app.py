@@ -3,14 +3,19 @@ from kivymd.app import MDApp
 from kivy.core.window import Window
 from kivy.lang import Builder
 from random import randint
+
+
+#Adjust the page size
 Window.size = (150, 200)
 
+
+# User interface design
 Dice_helper = """
 Screen:
 
     ScreenManager:
         MenuScreen:
-        
+
 <MenuScreen>:
     name:'menu'        
 
@@ -26,9 +31,10 @@ Screen:
 """
 
 
+# make class screen
 class MenuScreen(Screen):
     def random_number(self):
-        new_number = randint(1 , 6)
+        new_number = randint(1, 6)
         print(new_number)
         old_number = self.ids.number.text
         while new_number == old_number:
@@ -38,11 +44,14 @@ class MenuScreen(Screen):
             number = str(new_number)
             self.ids.number.text = f"           {number}"
 
+
+# add Menuscreen to app
 sm = ScreenManager()
 sm.add_widget(MenuScreen(name='menu'))
 
-class DiceApp(MDApp):
 
+# make Basic App class
+class DiceApp(MDApp):
 
     def build(self):
         self.theme_cls.theme_style = "Light"  # ['Light', 'Dark']
@@ -52,4 +61,5 @@ class DiceApp(MDApp):
         return screen
 
 
+# run App
 DiceApp().run()
